@@ -1,7 +1,9 @@
 <!-- apps/frontend/modules/job/templates/showSuccess.php -->
 <?php use_stylesheet('job.css') ?>
 <?php use_helper('Text') ?>
- 
+<?php slot('title') ?>
+  <?php echo sprintf('%s is looking for a %s', $job->getCompany(), $job->getPosition()) ?>
+<?php end_slot() ?>
 <div id="job">
   <h1><?php echo $job->getCompany() ?></h1>
   <h2><?php echo $job->getLocation() ?></h2>
