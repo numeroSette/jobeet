@@ -12,9 +12,15 @@ default:
     #language:     en
     #robots:       index, follow
 
-  stylesheets:    [main.css]
+  stylesheets:    [main.css, print: { media: print }]
 
   javascripts:    []
 
   has_layout:     true
   layout:         layout
+
+indexSuccess:
+  stylesheets: [jobs.css]
+
+showSuccess:
+  stylesheets: [job.css]
