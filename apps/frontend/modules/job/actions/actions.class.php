@@ -19,8 +19,7 @@ class jobActions extends sfActions
 
   public function executeShow(sfWebRequest $request)
   {
-    $this->job = Doctrine_Core::getTable('JobeetJob')->find(array($request->getParameter('id')));
-    $this->forward404Unless($this->job);
+    $this->job = $this->getRoute()->getObject();
   }
 
   public function executeNew(sfWebRequest $request)
@@ -63,7 +62,7 @@ class jobActions extends sfActions
     $this->forward404Unless($jobeet_job = Doctrine_Core::getTable('JobeetJob')->find(array($request->getParameter('id'))), sprintf('Object jobeet_job does not exist (%s).', $request->getParameter('id')));
     $jobeet_job->delete();
 
-    $this->redirect('job/index');
+    $this->redirect('homepage');
   }
 
   protected function processForm(sfWebRequest $request, sfForm $form)
@@ -73,7 +72,7 @@ class jobActions extends sfActions
     {
       $jobeet_job = $form->save();
 
-      $this->redirect('job/edit?id='.$jobeet_job->getId());
+      $this->redirect('job_show_user',$jobeet_job,true);
     }
   }
 }
